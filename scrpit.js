@@ -194,7 +194,7 @@ function updateCart(list) {
     list.map(product => {
         HTML += `
             <div class="flex justify-center items-center rtl w-fit">
-                <img src="/images/64816b40c064a.jpeg" class="w-1/3" alt="" />
+                <img src="../images/64816b40c064a.jpeg" class="w-1/3" alt="" />
                 <div class="flex flex-col items-start mx-5">
                     <h1>${product.name}</h1>
                     <p>${product.price}</p >
