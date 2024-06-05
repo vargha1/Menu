@@ -1,0 +1,623 @@
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منو هتل قصر الضیافه قدس</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="b">
+    <div id="cover"></div>
+    <div id="cover2"></div>
+    <div class="flex flex-col items-stretch" style="padding: 0 !important;">
+        <div class="flex justify-between pe-0">
+            <div class="flex">
+                <button class="btn flex items-center justify-center bg-[#424242] w-[55px] h-[35px] text-white"
+                    id="btn-sign-in" onclick="display2('open')">
+                    <i class="fa-regular fa-user" style="color: white;margin-right: 8px;"></i>
+                    <p>ورود</p>
+                </button>
+                <button class="z-[10]">
+                    <img src="../images/icons/shopping-basket-svgrepo-com.svg" width="30" height="30px" alt="basket"
+                        onclick="displayCart()">
+                </button>
+                <button class="btn p-1 z-[101]" onclick="handelDrawer('open')">
+                    <img src="../images/icons/british-flag.png" width="20px" height="20px" alt="flag">
+                </button>
+            </div>
+            <div style="z-index: 6;">
+                <button id="dropdown-btn" class="flex flex-col justify-center items-center" onclick="dropdown()">
+                    <div class="Hline"></div>
+                    <div class="Hline"></div>
+                    <div class="Hline"></div>
+                </button>
+                <ul id="dropdown-content"
+                    class="p-3 absolute right-[25px] -top-[10px] transition-all duration-500 opacity-0">
+                    <li><a href="#" class="text-white text-[10px] flex">به روزرسانی صفحه <img
+                                src="../images/icons/reload-arrow-svgrepo-com.svg" width="15px" height="15px"
+                                class="ms-2" alt=""></a></li>
+                    <li><a href="#" class="text-white text-[10px] flex justify-end py-2">اشتراک گذاری <img
+                                src="../images/icons/share-svgrepo-com.svg" width="15px" height="15px" class="ms-2"
+                                alt=""></a></li>
+                    <li><a href="#" class="text-white flex justify-end">Install <img
+                                src="../images/icons/download-svgrepo-com.svg" width="18px" height="18px" class="ms-2"
+                                alt=""></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex">
+            <div id="drawer-cover"
+                class="bottom-[100%] top-0 right-0 left-0 fixed opacity-30 bg-black z-[101] transition-all duration-500"
+                onclick="handelDrawer('close')">
+            </div>
+            <div id="drawer"
+                class="flex flex-col justify-end items-center bg-[#252525] duration-500 z-[102] fixed transition-all -bottom-[200px] right-0 left-0">
+                <div>
+                    <p id="offcanvasBottomLabel2">انتخاب زبان منو</p>
+                </div>
+                <div class="flex flex-col">
+                    <a href="fa/index.html" class="lang-type text-end">فارسی / FA</a>
+                    <a href="en/index.html" class="lang-type text-end">انگلیسی / EN</a>
+                    <a href="ar/index.html" class="lang-type text-end mb-5">عربی / AR</a>
+                </div>
+            </div>
+        </div>
+        <img src="../images/logo.png" alt="logo" width="50px" style="margin: auto;position: relative;bottom: 40px;">
+        <div class="flex justify-center">
+            <a href="https://instagram.com/qasr_alziafat_qods" style="text-decoration: none;color: white;z-index: 6;">
+                <img src="../images/icons/instagram.png" alt="instagram-icon" width="18px" style="display: inline;">
+                instagram</a>
+            <a href="tel:+985148884" style="text-decoration: none;color: white; margin-left: 20px; z-index: 6;">
+                <img src="../images/icons/phone.png" alt="Phone:" width="23px" style="display: inline;">
+                05148884</a>
+        </div>
+        <div class="h-[60px]"></div>
+    </div>
+    <div id="signin-cover" class="bg-black fixed z-[100] top-0 bottom-0 left-0 right-0 opacity-40 hidden"
+        onclick="display2('close')">
+    </div>
+    <div class="justify-start text-center duration-500 items-center fixed -top-[140%] bottom-[100%] md:right-[33%] md:left-[33%] right-0 left-0 md:w-[33%] z-[111] bg-[#424242] flex flex-col"
+        id="signin-form" style="transition: top 0.5s,bottom 0.5s;">
+        <img src="../images/logo.png" alt="" width="90px" height="90px">
+        <div class="rounded-full h-[35px] justify-center items-center flex"
+            style="box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 1px;">
+            <button class="me-0 ms-[2.5px] w-[110px] h-[30px] bg-[#89684c] rounded-full" id="form1-btn"
+                onclick="changeForm(1)">ورود</button>
+            <button class="mx-0 w-[110px] h-[30px] rounded-full" onclick="changeForm(2)" id="form2-btn">ثبت نام</button>
+        </div>
+        <form action="" id="form1" class="flex flex-col text-start w-[100%] p-5 rtl">
+            <label for="phoneN" class="float-left m-2">ایمیل</label>
+            <input type="tel" name="phoneN" id="phoneN"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242] border border-white"
+                placeholder="آدرس ایمیل را وارد کنید">
+            <label for="passwd" class="float-left m-2">رمزعبور</label>
+            <input type="password" name="passwd" id="passwd"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242]"
+                placeholder="رمزعبور با حداقل 8 کاراکتر">
+            <input type="submit" value="ورود" class=" rounded-full text-center w-100 bg-[#89684c] py-[8px] mt-5">
+        </form>
+        <form action="" id="form2" class="flex flex-col text-start w-[100%] p-5 rtl hidden">
+            <label for="fname" class="float-left m-2">نام</label>
+            <input type="text" name="fname" id="fname"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242] border border-white"
+                placeholder="اسم خود را وارد کنید">
+            <label for="email" class="float-left m-2">نام خانوادگی</label>
+            <input type="email" name="email" id="email"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242] border border-white"
+                placeholder="نام خانوادگی خود را وارد کنید">
+            <label for="email" class="float-left m-2">ایمیل</label>
+            <input type="email" name="email" id="email"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242] border border-white"
+                placeholder="آدرس ایمیل خود را وارد کنید">
+            <label for="passwd" class="float-left m-2">رمز عبور</label>
+            <input type="password" name="passwd" id="passwd"
+                class="rounded-full text-start w-100 px-[25px] py-[8px] bg-[#424242] border border-white"
+                placeholder="رمزعبوری با حداقل ۸ کاراکتر وارد کنید">
+            <input type="submit" value="ثبت نام" class="rounded-full text-center w-100 bg-[#89684c] py-[8px] mt-5">
+        </form>
+    </div>
+    <div class="fixed bg-[#424242] h-[100%] w-[300px] -top-0 -left-[300%] z-[121] transition-all duration-500 flex flex-col p-4 items-start rtl"
+        id="offCanvas">
+        <button class="text-white" onclick="closeCart()">X</button>
+
+    </div>
+    <main style="overflow: auto;">
+        <section class="flex justify-center min-w-min overflow-scroll" id="categories">
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66]"
+                onclick="switchMenu(6)">
+                <img src="../images/salad.png" alt="salad" width="40px" height="40px">
+                <p class="relative bottom-[4px]">Saladbar and Beverage</p>
+                <h3 class="text-center text-[10px] text-white relative bottom-[8px]">سالاد بار و نوشیدنی</h3>
+            </div>
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66]"
+                onclick="switchMenu(5)">
+                <img src="../images/rice.png" alt="rice bowl" width="40px" height="40px">
+                <p>Rice</p>
+                <h3 class="text-center text-[11px] text-white">برنج و بریانی</h3>
+            </div>
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66]"
+                onclick="switchMenu(4)">
+                <img src="../images/stew.png" alt="stew dish" width="40px" height="40px">
+                <p>Stew</p>
+                <h3 class="text-center text-[11px] text-white">خورشت و خوراک</h3>
+            </div>
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66]"
+                onclick="switchMenu(3)">
+                <img src="../images/fried.png" alt="fried chicken" width="40px" height="40px">
+                <p>Fried</p>
+                <h3 class="text-center text-[11px] text-white">سوخاری</h3>
+            </div>
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66]"
+                onclick="switchMenu(2)">
+                <img src="../images/kebab.png" alt="kebab" width="40px" height="40px" style="margin-top: 5px;">
+                <p>Kebab</p>
+                <h3 class="text-center text-[11px] text-white">کباب</h3>
+            </div>
+            <div class="chef-menu flex flex-col items-center menu-H cursor-pointer hover:bg-[#b18e66] gradient"
+                onclick="switchMenu(1)" style="margin-right: 0;">
+                <img src="../images/chef-img.png" alt="dish" width="40px" height="40px" style="margin-top: 5px;">
+                <p>Chefs Special Menu</p>
+                <h3 class="text-center text-[11px] text-white">منوی سر آشپز</h3>
+            </div>
+        </section>
+
+        <section class="w-full flex items-center flex-wrap menu z-[6] mt-4 pb-[50px] px-3 transition-all duration-500"
+            id="menu1">
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">شیشلیک مخصوص</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">۶۰۰ گرم راسته شیشلیکی مرینیت شده (۶
+                            تکه)</p>
+                        <p class="font-bold flex flex-auto items-end text-white relative md:-bottom-[20px]">800,000
+                            تومان
+                        </p>
+                        <div
+                            class="w-[100%] md:justify-end justify-center md:m-0 my-3 flex md:relative bottom-[2px] left-[10px]">
+                            <p class="mx-2 button text-[15px] text-white cursor-pointer"
+                                onclick="counter('شیشلیک مخصوص',800000,'dec', 1)">—
+                            </p>
+
+                            <p id="count1" class="text-white h-[0px] md:">0</p>
+
+                            <p class="mx-2 button text-[20px] text-white relative bottom-[3px] cursor-pointer"
+                                onclick="counter('شیشلیک مخصوص',800000,'inc', 1)">+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/648175d42decf.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">ماهیچه مخصوص</p>
+                        <p class="text-[13px] font-bold text-[#ccc]">۵۵۰ گرم ماهیچه گوسفندی</p>
+                        <p class="font-bold flex flex-auto items-end text-white relative md:-bottom-[20px]">750,000
+                            تومان
+                        </p>
+                        <div
+                            class="w-[100%] md:justify-end justify-center md:m-0 my-3 flex md:relative bottom-[2px] left-[10px]">
+                            <p class="mx-2 button text-[15px] text-white cursor-pointer"
+                                onclick="counter('ماهیچه مخصوص',800000,'dec', 2)">
+                                —
+                            </p>
+
+                            <p id="count2" class="text-white h-[0px] md:">0</p>
+
+                            <p class="mx-2 button text-[20px] text-white relative bottom-[3px] cursor-pointer"
+                                onclick="counter('ماهیچه مخصوص',800000,'inc', 2)">+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816de29124f.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">گوشت سرخ شده مخصوص</p>
+                        <p class="text-[13px] font-bold text-[#ccc]">۴۰۰ گرم گوشت گردن گوسفندی</p>
+                        <p class="font-bold flex flex-auto items-end text-white">700,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">میگو گریل شده</p>
+                        <p class="text-[13px] font-bold text-[#ccc]">۴۰۰ گرم میگو سایز متوسط</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">شاه میگو کبابی</p>
+                        <p class=" text-[13px] font-bold text-[#ccc]">۴۰۰ گرم شاه میگو مرینیت شده به همراه دورچین</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">میگو سرخ شده</p>
+                        <p class="text-[12px] font-bold text-[#ccc]">۴۰۰ گرم میگو سرخ شده سایز درشت</p>
+                        <p class="font-bold flex flex-auto items-end text-white">500,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section
+            class="w-full flex items-center flex-wrap menu z-[6] mt-4 pb-[50px] px-3 transition-all duration-500 -top-[1000%] opacity-0"
+            id="menu2">
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">جوجه تندوری(تند)</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">۴۰۰ گرم ران مرغ بدون استخوان طعم دار
+                            شده با ادویه
+                            های مخصوص</p>
+                        <p class="font-bold flex flex-auto items-end text-white relative md:-bottom-[20px]">400,000
+                            تومان
+                        </p>
+                        <div
+                            class="w-[100%] md:justify-end justify-center md:m-0 my-3 flex md:relative bottom-[2px] left-[10px]">
+                            <p class="mx-2 button text-[15px] text-white cursor-pointer"
+                                onclick="counter(2,1,'شیشلیک مخصوص',800000,' ',0,' ')">—
+                            </p>
+
+                            <p id="count1" class="text-white h-[0px] md:">0</p>
+
+                            <p class="mx-2 button text-[20px] text-white relative bottom-[3px] cursor-pointer"
+                                onclick="counter(1,1,'شیشلیک مخصوص',800000,' ',0,' ')">+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/6481a6a46593f.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب سلطانی</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center text-center">۲۲۰ گرم مغری راسته گوسفندی
+                            یک سیخ کیاب
+                            کوبیده
+                            ۱۱۰ گرم گوشت گوسفندی و گوساله</p>
+                        <p class="font-bold flex flex-auto items-end text-white relative md:-bottom-[20px]">
+                            650,000
+                            تومان
+                        </p>
+                        <div
+                            class="w-[100%] md:justify-end justify-center md:m-0 my-3 flex md:relative bottom-[2px] left-[10px]">
+                            <p class="mx-2 button text-[15px] text-white cursor-pointer"
+                                onclick="counter(2,2,'شیشلیک مخصوص',800000,' ',0,' ')">
+                                —
+                            </p>
+
+                            <p id="count2" class="text-white h-[0px] md:">0</p>
+
+                            <p class="mx-2 button text-[20px] text-white relative bottom-[3px] cursor-pointer"
+                                onclick="counter(1,2,'شیشلیک مخصوص',800000,' ',0,' ')">+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/648179c1ef367.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب برگ ممتاز</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">۲۲۰ گرم مغزی راسته گوسفند</p>
+                        <p class="font-bold flex flex-auto items-end text-white">700,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/6481a75340835.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب برگ</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">۱۸۰ گرم مغری راسته گوسفند</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64819615792d6.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب بختیاری</p>
+                        <p class=" text-[13px] font-bold text-[#ccc] text-center">۱۲۰ گرم مغزی راسته گوسفندی مرینیت شده
+                            ۱۲۰ گرم سینه مرغ مرینیت شده</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/6481d739cb645.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب وزیری</p>
+                        <p class="text-[12px] font-bold text-[#ccc]">یک سیخ کوبیده ۱۱۰ گرم (گوشت گوسفند و گوساله) یک سیخ
+                            جوجه بدون استخوان مرینیت شده</p>
+                        <p class="font-bold flex flex-auto items-end text-white">500,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/6481a2c354280.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">کباب شاه عباسی</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">یک سیخ کباب شامل 220 گرم جوجه کباب بدون
+                            استخوان 110 گرم کوبیده (گوشت گوسفندی و گوساله)</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/6481d4d6427b7.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">ماهی قزل آلا کبابی</p>
+                        <p class=" text-[13px] font-bold text-[#ccc] text-center">350 گرم فله ماهی قزل آلا</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">میگو سرخ شده</p>
+                        <p class="text-[12px] font-bold text-[#ccc]">۴۰۰ گرم میگو سرخ شده سایز درشت</p>
+                        <p class="font-bold flex flex-auto items-end text-white">500,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">میگو گریل شده</p>
+                        <p class="text-[13px] font-bold text-[#ccc] text-center">۴۰۰ گرم میگو سایز متوسط</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">شاه میگو کبابی</p>
+                        <p class=" text-[13px] font-bold text-[#ccc] text-center">۴۰۰ گرم شاه میگو مرینیت شده به همراه
+                            دورچین</p>
+                        <p class="font-bold flex flex-auto items-end text-white">800,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full md:m-0 mb-4">
+                <div
+                    class="w-full flex flex-col md:flex-row items-center pt-2 bg-gradient-to-r from-[#4e4a45] to-[#5f5349] md:bg-none">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64e6dcd7d5d59.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px] object-cover">
+                    </div>
+                    <div
+                        class="md:w-[calc(100%-150px)] w-[300px] h-[150px] md:bg-gradient-to-r from-[#4e4a45] to-[#5f5349] flex flex-col items-center md:items-start">
+                        <p class="text-[15px] text-white font-bold mt-3">میگو سرخ شده</p>
+                        <p class="text-[12px] font-bold text-[#ccc]">۴۰۰ گرم میگو سرخ شده سایز درشت</p>
+                        <p class="font-bold flex flex-auto items-end text-white">500,000 تومان</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full flex items-center flex-wrap menu transition-all duration-500 -top-[1000%] opacity-0"
+            id="menu3">
+            <div class="md:w-6/12 w-full ">
+                <div class="w-full flex items-center p-2 pb-0 pe-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3 class="text-[12px]">شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                        <p style="margin-top: 50px; margin-bottom: 0;"><b>800000 تومان</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>ماهیچه مخصوص</h3>
+                        <p>550 گرم ماهیچه گوسفندی</p>
+                        <p style="margin-top: 50px; margin-bottom: 0;"><b>750000 تومان</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0 pe-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0 pe-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full ">
+                <div class="w-full flex items-center p-2 pb-0 pe-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3 class="text-[12px]">شیشلیک مخصوص</h3>
+                        <p>600 گرم راسته شیشلیکی مرینیت شده (6 تکه)</p>
+                        <p style="margin-top: 50px; margin-bottom: 0;"><b>800000 تومان</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-6/12 w-full flex items-center">
+                <div class="w-full flex items-center p-2 pb-0">
+                    <div class="flex items-center justify-center">
+                        <img src="../images/64816b40c064a.jpeg" alt="food image" width="140px"
+                            class="w-[150px] h-[150px]">
+                    </div>
+                    <div class="w-[calc(100%-150px)] h-[150px] bg-gradient-to-r from-[#4e4a45] to-[#5f5349]">
+                        <h3>ماهیچه مخصوص</h3>
+                        <p>550 گرم ماهیچه گوسفندی</p>
+                        <p style="margin-top: 50px; margin-bottom: 0;"><b>750000 تومان</b></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="../scrpit.js"></script>
+
+</html>

@@ -1,0 +1,194 @@
+@font-face {
+    font-family: iransans;
+    src: url(IranianSansRegular.ttf);
+}
+
+p,
+span {
+    font-family: iransans !important;
+
+}
+
+body {
+    background-color: #424242 !important;
+    z-index: 1;
+    font-family: iransans;
+}
+
+section:nth-child(1) div p {
+    color: white;
+    font-size: 8px;
+}
+
+section:nth-child(2),
+section:nth-child(3),
+section:nth-child(4) {
+    direction: rtl;
+    position: absolute;
+}
+
+span {
+    color: white;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+hr {
+    margin: 4px 0 !important;
+    opacity: 1 !important;
+}
+
+form {
+    margin: 20px 10px;
+}
+
+.Hline {
+    width: 18px;
+    height: 3px;
+    background-color: #a4a4a4;
+    margin: 2.5px 2px;
+}
+
+#dropdown-btn {
+    background-color: #424242;
+    margin: 6px;
+    width: 30px;
+    height: 30px;
+}
+
+.dropdown {
+    background-color: #424242;
+    position: absolute;
+    right: 6px;
+    border: solid white 1px;
+    border-radius: 4px;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 10px 5px;
+}
+
+#offcanvasBottom {
+    background-color: #424242;
+}
+
+#offcanvasBottomLabel {
+    font-size: 13px;
+}
+
+#btn-sign-in {
+    z-index: 5;
+    margin: 10px 5px;
+    border-radius: 4px;
+}
+
+#btn-sign-in p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.gender-box {
+    display: inline-block;
+    height: 30px;
+    width: 75px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+}
+
+#signin-btn {
+    width: 100%;
+    margin: 0 10px;
+    padding: 8px 0;
+    z-index: 5;
+}
+
+#lang {
+    position: relative;
+    background-color: #424242;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    z-index: 6;
+}
+
+.lang-type {
+    color: white;
+    text-decoration: none;
+}
+
+#cover {
+    background-image: url(images/cover.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    object-position: 50% -40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 190px;
+    opacity: 0.4;
+}
+
+#cover2 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 190px;
+    background-image: linear-gradient(to bottom, transparent, #424242);
+}
+
+.chef-menu {
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 20px;
+    background-color: #4b4945;
+    margin-top: 30px;
+    margin-right: 8px;
+    box-sizing: border-box;
+}
+
+.chef-menu p {
+    font-size: 8px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+
+#categories::-webkit-scrollbar,
+main::-webkit-scrollbar {
+    display: none;
+}
+
+.gradient {
+    background-image: radial-gradient(#524d48 33%, #6e6050 66%);
+}
+
+.gradient:hover {
+    background-image: none;
+    background-color: #b18e66;
+}
+
+#lang-cover {
+    display: none;
+    position: fixed;
+    background-color: black;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.4;
+}
+
+.transition2 {
+    transition: bottom 0.3s linear 0.2s !important;
+}
+
+.rtl {
+    direction: rtl;
+}
