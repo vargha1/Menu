@@ -122,6 +122,7 @@ function closeCart() {
 }
 
 let count = 0;
+let idCount = 1;
 let productList = [];
 
 function counter(name, price, type, num) {
@@ -129,47 +130,56 @@ function counter(name, price, type, num) {
     if (type == 'inc') {
         if (productList.length == 0) {
             productList.push({
+                "id": idCount,
                 "name": name,
                 "countOfFoods": count,
                 "price": newPrice,
             });
+            idCount++;
         }
         count++;
-        displayCount(count, num);
         newPrice = price * count;
         for (let i = 0; i < productList.length; i++) {
-            if (productList[i]?.name == name) {
+            if ((productList[i]?.name == name) && productList[i].id == num) {
                 productList[i].countOfFoods++;
                 productList[i].price = newPrice;
             }
         }
-        if (!(productList.some(el => el.name === name))) {
+        if (!(productList.some(el => (el.name === name) && (el.id == num)))) {
             productList.push({
+                "id": idCount,
                 "name": name,
                 "countOfFoods": count,
                 "price": newPrice,
             });
         }
-        updateCart(productList);
+        updateCart(productList, num);
+        displayCount(count, num);
     }
     if (type == 'dec') {
         if (count > 0) {
             count--;
-            displayCount(count, num);
         }
         newPrice = price * count;
 
         for (let i = 0; i < productList.length; i++) {
-            if (productList[i]?.name == name && productList[i].countOfFoods == 1) {
+            if ((productList[i]?.name == name) && (productList[i].countOfFoods == 1) && (productList[i].id == num)) {
                 productList.splice(i, 1);
             }
-            if (productList[i]?.name == name && productList[i].countOfFoods != 1) {
+            if ((productList[i]?.name == name) && (productList[i].countOfFoods != 1) && (productList[i].id == num)) {
                 productList[i].countOfFoods--;
                 productList[i].price = newPrice;
             }
         }
 
-        updateCart(productList);
+        updateCart(productList, num);
+        displayCount(count, num);
+    }
+
+    for (let i = 0; i < productList.length; i++) {
+        if ((productList[i]?.name == name) && (productList[i].countOfFoods == 1) && (productList[i].id == num)) {
+            updateCart(productList, num, "hidden");
+        }
     }
 
     displayCart();
@@ -177,47 +187,31 @@ function counter(name, price, type, num) {
         closeCart();
     }
 
-    document.querySelectorAll(".btnDelete").forEach(btn => {
-        btn.addEventListener('click', () => {
-            for (let i = 0; i < productList.length; i++) {
-                if (productList[i]?.name == name && productList[i].countOfFoods == 1) {
-                    productList.splice(i, 1);
-                }
-            }
-        })
-    })
 }
 
-function updateCart(list) {
+function updateCart(list, num, state = "") {
     let HTML = `<button class="text-white" onclick="closeCart()">X</button>`;
 
-    list.map(product => {
+    list.map((product, index) => {
         HTML += `
-            <div class="flex justify-center items-center rtl w-fit">
+            <div class="flex justify-center items-center rtl w-fit wrapper1">
                 <img src="../images/64816b40c064a.jpeg" class="w-1/3" alt="" />
                 <div class="flex flex-col items-start mx-5">
                     <h1>${product.name}</h1>
                     <p>${product.price}</p >
-            <p>${product.countOfFoods}</p>
                 </div >
-            <button class="btnDelete">
-                <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" width="48px" height="48px"
-                    viewBox="-242.5 -242.5 970.00 970.00" xml:space="preserve" stroke="#ffffff" stroke-width="0.00485">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g>
-                            <g>
-                                <rect x="67.224" width="350.535" height="71.81"></rect>
-                                <path
-                                    d="M417.776,92.829H67.237V485h350.537V92.829H417.776z M165.402,431.447h-28.362V146.383h28.362V431.447z M256.689,431.447 h-28.363V146.383h28.363V431.447z M347.97,431.447h-28.361V146.383h28.361V431.447z">
-                                </path>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
-            </button>
+                <div class="flex justify-center ${state}">
+                    <p class="mx-2 button text-[15px] text-white cursor-pointer"
+                    onclick="counter('${product.name}',${product.price / product.countOfFoods},'dec', ${index + 1})">—
+                    </p>
+                    <p class="text-white h-[0px] count${num}">0</p>
+                    <p class="mx-2 button text-[20px] text-white relative bottom-[3px] cursor-pointer"
+                        onclick="counter('${product.name}',${product.price / product.countOfFoods},'inc', ${index + 1})">+
+                    </p>
+                </div>
+                ${state == "hidden" ? (
+                `<button class="px-5 py-2 bg-[red]" onclick="">Delete</button>`
+            ) : ("")}
             </div >
             `;
     })
@@ -226,5 +220,7 @@ function updateCart(list) {
     offCanvas.innerHTML = HTML;
 }
 function displayCount(count, num) {
-    document.getElementById("count" + num).innerText = count;
+    document.querySelectorAll(".count" + num).forEach(elem => {
+        elem.innerHTML = count;
+    })
 }
