@@ -189,6 +189,10 @@ function counter(name, price, type, num) {
 
 }
 
+function removeItem(num) {
+    productList.splice(num, 1);
+}
+
 function updateCart(list, num, state = "") {
     let HTML = `<button class="text-white" onclick="closeCart()">X</button>`;
 
@@ -210,7 +214,7 @@ function updateCart(list, num, state = "") {
                     </p>
                 </div>
                 ${state == "hidden" ? (
-                `<button class="px-5 py-2 bg-[red]" onclick="">Delete</button>`
+                `<button class="px-5 py-2 bg-[red]" onclick='removeItem(${num - 1})'>Delete</button>`
             ) : ("")}
             </div >
             `;
